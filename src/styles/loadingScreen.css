@@ -38,3 +38,7 @@
 .form {
   width: 450px;
 }
+
+.cursor {
+  cursor: pointer;
+}

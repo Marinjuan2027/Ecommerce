@@ -36,7 +36,7 @@ const Home = () => {
   console.log(categories);
 
   return (
-    <div>
+    <div className="cursor">
       <Row>
         <Col lg={3}>
           <ListGroup>

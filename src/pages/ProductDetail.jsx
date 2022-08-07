@@ -31,7 +31,7 @@ const ProductDetail = () => {
   }, [allProduct, id]);
 
   return (
-    <div>
+    <div className="cursor">
       <h1>ProductDetail</h1>
       {/* <h1>{productDetail?.description}</h1>
       <img src={productDetail?.productImgs} alt="" />
