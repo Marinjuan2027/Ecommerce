@@ -2,13 +2,22 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getNewsThunk } from "../store/slices/products.slice";
 import { useNavigate, useParams } from "react-router-dom";
-import { Card, ListGroup, Row } from "react-bootstrap";
+import {
+  Card,
+  ListGroup,
+  Row,
+  InputGroup,
+  Button,
+  Form,
+} from "react-bootstrap";
 import "../styles/loadingScreen.css";
+import { addCartThunk } from "../store/slices/cart.slice";
 
 const ProductDetail = () => {
   const allProduct = useSelector((state) => state.products);
   const [productDetail, SetProductDetail] = useState({});
   const [suggestedNews, setSuggestedNew] = useState([]);
+  const [quantity, setQuantity] = useState("");
 
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -30,9 +39,38 @@ const ProductDetail = () => {
     setSuggestedNew(filteredNews);
   }, [allProduct, id]);
 
+  const addCart = () => {
+    alert("Añadido al carrito");
+    const car = {
+      id: productDetail.id,
+      quantity: quantity,
+    };
+    dispatch(addCartThunk(car));
+    console.log(car);
+  };
+
   return (
     <div className="cursor">
-      <h1>ProductDetail</h1>
+      <div>
+        <h5>Add news to cart</h5>
+
+        <InputGroup className="mb-3">
+          <Form.Control
+            placeholder="Rate"
+            aria-label="Recipient's username"
+            aria-describedby="basic-addon2"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+          />
+          <Button
+            onClick={addCart}
+            variant="outline-secondary"
+            id="button-addon2"
+          >
+            Add
+          </Button>
+        </InputGroup>
+      </div>
       {/* <h1>{productDetail?.description}</h1>
       <img src={productDetail?.productImgs} alt="" />
       <ul>

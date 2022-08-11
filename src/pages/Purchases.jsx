@@ -15,9 +15,11 @@ const Purchases = () => {
       <h1>Purchases</h1>
       <ul>
         {purchases.map((purchase) => (
-          <li>
-            {purchase.products.description}
-            <img src={purchase.products.productImgs} alt="" />
+          <li key={purchase.id}>
+            <div>{purchase.createdAt}</div>
+            {purchase.cart.products.map((product) => (
+              <div key={product.id}>{product.title}</div>
+            ))}
           </li>
         ))}
       </ul>

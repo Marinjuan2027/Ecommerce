@@ -18,10 +18,10 @@ export const getPurchasesThunk = () => (dispatch) => {
   dispatch(setIsLoading(true));
   return axios
     .get(
-      "https://ecommerce-api-react.herokuapp.com/api/v1/products/purchases/",
+      "https://ecommerce-api-react.herokuapp.com/api/v1/purchases",
       getConfig()
     )
-    .then(() => dispatch(setPurchases(res.data)))
+    .then((res) => dispatch(setPurchases(res.data.data.purchases)))
     .finally(() => dispatch(setIsLoading(false)));
 };
 
