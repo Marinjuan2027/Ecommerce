@@ -9,6 +9,8 @@ import {
   InputGroup,
   Button,
   Form,
+  CardImg,
+  Col,
 } from "react-bootstrap";
 import "../styles/loadingScreen.css";
 import { addCartThunk } from "../store/slices/cart.slice";
@@ -85,17 +87,34 @@ const ProductDetail = () => {
           <ListGroup>
             <span>Price: {productDetail?.price}</span>
           </ListGroup>
-          <ListGroup className="list-group-flush">
+          {/* <ListGroup className="list-group-flush">
             {suggestedNews.map((products) => (
               <ListGroup.Item
                 onClick={() => navigate(`/product/${products.id}`)}
                 key={products.id}
               >
                 {products.title}
+                <CardImg src={products.productImgs} style={{ width: "65%" }} />
               </ListGroup.Item>
             ))}
-          </ListGroup>
+          </ListGroup> */}
         </Card>
+        <Row xs={1} md={2} lg={3} className="g-4 m-0">
+          {suggestedNews.map((products) => (
+            <Col key={products.id}>
+              <Card onClick={() => navigate(`/product/${products.id}`)}>
+                <Card.Body>
+                  <Card.Title>{products.title}</Card.Title>
+                  <CardImg
+                    src={products.productImgs}
+                    style={{ width: "65%" }}
+                    className="img"
+                  />
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
       </Row>
     </div>
   );
