@@ -46,7 +46,6 @@ const ProductDetail = () => {
       quantity: quantity,
     };
     dispatch(addCartThunk(car));
-    console.log(car);
   };
 
   return (
@@ -71,32 +70,28 @@ const ProductDetail = () => {
           </Button>
         </InputGroup>
       </div>
-      {/* <h1>{productDetail?.description}</h1>
-      <img src={productDetail?.productImgs} alt="" />
-      <ul>
-        {suggestedNews.map((products) => (
-          <li onClick={() => navigate(`/product/${products.id}`)}>
-            {products.description}
-          </li>
-        ))}
-      </ul> */}
+
       <Row className="g-4 abs-center">
         <Card style={{ width: "50%" }} className="border p-3 form">
-          <Card.Body>
-            <Card.Title>{productDetail?.title}</Card.Title>
-            {/* <Card.Text>{productDetail?.description}</Card.Text> */}
-          </Card.Body>
           <Card.Img
             variant="top"
             src={productDetail?.productImgs}
             className="img"
           />
+          <Card.Body>
+            <Card.Title>{productDetail?.title}</Card.Title>
+            <Card.Text>{productDetail?.description}</Card.Text>
+          </Card.Body>
+          <ListGroup>
+            <span>Price: {productDetail?.price}</span>
+          </ListGroup>
           <ListGroup className="list-group-flush">
             {suggestedNews.map((products) => (
               <ListGroup.Item
                 onClick={() => navigate(`/product/${products.id}`)}
+                key={products.id}
               >
-                {products.description}
+                {products.title}
               </ListGroup.Item>
             ))}
           </ListGroup>

@@ -14,6 +14,7 @@ import {
   Form,
   Button,
   ListGroup,
+  Dropdown,
 } from "react-bootstrap";
 import axios from "axios";
 
@@ -34,26 +35,45 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="cursor">
+    <div className="cursor mt-5">
       <Row>
-        <Col lg={3}>
+        {/* <Col lg={3}>
           <ListGroup>
-            {categories.map((category) => (
-              <ListGroup.Item
-                key={category.id}
-                onClick={() => dispatch(filterCategoryThunk(category.id))}
+          {categories.map((category) => (
+          <ListGroup.Item
+          <ListGroup.Item
+          key={category.id}
+          onClick={() => dispatch(filterCategoryThunk(category.id))}
               >
                 {category.name}
               </ListGroup.Item>
             ))}
           </ListGroup>
+        </Col> */}
+        <Col lg={3} className="mb-5">
+          <Dropdown>
+            <Dropdown.Toggle variant="success" id="dropdown-basic">
+              Category
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {categories.map((category) => (
+                <Dropdown.Item
+                  href=""
+                  key={category.id}
+                  onClick={() => dispatch(filterCategoryThunk(category.id))}
+                >
+                  {category.name}
+                </Dropdown.Item>
+              ))}
+            </Dropdown.Menu>
+          </Dropdown>
         </Col>
 
         <Col>
           <h1>Home</h1>
           <InputGroup className="mb-3">
             <Form.Control
-              placeholder="Recipient's username"
+              placeholder="what are you looking for"
               aria-label="Recipient's username"
               aria-describedby="basic-addon2"
               onChange={(e) => setSearchValue(e.target.value)}
